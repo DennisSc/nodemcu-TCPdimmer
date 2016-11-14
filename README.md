@@ -1,3 +1,3 @@
 ﻿# nodemcu-TCPdimmer
 
-Node connects to your wifi, listens on tcp port 43333 for commands in the form of "RGB1=012,122,255", and fades between current and given color during five seconds.
+TCPdimmer node for nodeMCU lua: on startup, it connects to your wifi, reads the last saved color values from memory, sets the LEDs to the last value, and starts a server and listens on tcp port 43333 for commands in the form of TCP packets containing for example "RGB1=012,122,255". Once it receives such packets, it fades between current and given color during five seconds (time can be adjusted). Fading is done by filling a buffer with the calculated current color value, and then sending the buffer's contents to the data line of a WS2812 LED strip (connected to GPIO02 of the esp8266). A newer nodeMCU firmware is needed, the contained firmware image for example was built with https://nodemcu-build.com/ and contains only the default and (obviously) the additional ws2812 module.
